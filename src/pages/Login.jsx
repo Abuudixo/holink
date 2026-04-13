@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff, Github, Chrome, Apple, ArrowRight } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Chrome, Apple, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const Login = () => {
+    const { t } = useLanguage();
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +21,7 @@ const Login = () => {
             <div className="hidden lg:flex lg:w-1/2 relative bg-dark overflow-hidden">
                 <img 
                     src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1200" 
-                    alt="Luxury Stay"
+                    alt="Property Stay"
                     className="absolute inset-0 w-full h-full object-cover opacity-60 scale-110 hover:scale-100 transition-transform duration-10000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent" />
@@ -27,7 +29,7 @@ const Login = () => {
                 <div className="relative z-10 p-12 flex flex-col justify-between h-full w-full">
                     <Link to="/" className="flex items-center gap-2 text-white">
                         <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                            <span className="font-display font-bold text-xl text-white">M</span>
+                            <span className="font-display font-bold text-xl text-white">H</span>
                         </div>
                         <span className="font-display font-bold text-2xl tracking-tight">HoyLink</span>
                     </Link>
@@ -67,13 +69,13 @@ const Login = () => {
                         <div className="lg:hidden flex justify-center mb-6">
                             <Link to="/" className="flex items-center gap-2">
                                 <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                                    <span className="font-display font-bold text-white">M</span>
+                                    <span className="font-display font-bold text-white">H</span>
                                 </div>
                                 <span className="font-display font-bold text-xl text-dark">HoyLink</span>
                             </Link>
                         </div>
-                        <h1 className="text-3xl font-display font-bold text-dark mb-2">Welcome Back</h1>
-                        <p className="text-gray-500">New to HoyLink? <a href="#" className="text-primary font-bold hover:underline">Create an account</a></p>
+                        <h1 className="text-3xl font-display font-bold text-dark mb-2">{t('login_title')}</h1>
+                        <p className="text-gray-500">{t('login_no_account')} <a href="#" className="text-primary font-bold hover:underline">{t('login_signup')}</a></p>
                     </div>
 
                     {/* Social Logins */}
@@ -97,7 +99,7 @@ const Login = () => {
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
-                            <label className="block text-sm font-bold text-dark mb-1 ml-1" htmlFor="email">Email Address</label>
+                            <label className="block text-sm font-bold text-dark mb-1 ml-1" htmlFor="email">{t('login_email')}</label>
                             <div className="relative">
                                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                                 <input 
@@ -111,7 +113,7 @@ const Login = () => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-bold text-dark mb-1 ml-1" htmlFor="password">Password</label>
+                            <label className="block text-sm font-bold text-dark mb-1 ml-1" htmlFor="password">{t('login_password')}</label>
                             <div className="relative">
                                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                                 <input 
@@ -136,7 +138,7 @@ const Login = () => {
                                 <input type="checkbox" className="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300" />
                                 <span className="text-sm font-medium text-gray-600">Remember me</span>
                             </label>
-                            <a href="#" className="text-sm font-bold text-primary hover:underline">Forgot password?</a>
+                            <a href="#" className="text-sm font-bold text-primary hover:underline">{t('login_forgot')}</a>
                         </div>
 
                         <button 
@@ -148,7 +150,7 @@ const Login = () => {
                                 <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                             ) : (
                                 <>
-                                    Sign In
+                                    {t('login_btn')}
                                     <ArrowRight size={18} />
                                 </>
                             )}

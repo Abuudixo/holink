@@ -14,8 +14,9 @@ export const listings = [
             'https://images.unsplash.com/photo-1512915922686-57c1149ad32d?auto=format&fit=crop&q=80&w=1200'
         ],
         tag: 'Beachfront',
-        description: 'Experience ultimate luxury at this stunning Liido beachfront villa. Featuring panoramic ocean views, private beach access, and 24/7 security, this property is the pinnacle of coastal living in Mogadishu.',
+        description: 'Enjoy a comfortable stay at this stunning Liido beachfront villa. Featuring panoramic ocean views, private beach access, and 24/7 security, this property is a great place near the beach in Mogadishu.',
         amenities: ['Ocean View', 'Private Security', 'Backup Generator', 'High-speed Wi-Fi', 'Maid Service'],
+        rentCategory: 'Short term',
         host: {
             name: 'Abdullahi Ali',
             avatar: 'https://i.pravatar.cc/150?u=abdullahi',
@@ -24,7 +25,7 @@ export const listings = [
     },
     {
         id: 2,
-        title: 'Hodan Executive Penthouse',
+        title: 'Hodan Central Apartment',
         location: 'Hodan, Mogadishu',
         price: 1200,
         unit: 'month',
@@ -37,8 +38,9 @@ export const listings = [
             'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200'
         ],
         tag: 'Corporate Pick',
-        description: 'Modern executive living in the heart of Mogadishu’s business district. Our Hodan penthouse offers high-end finishes, air conditioning, and a massive terrace overlooking the city skyline.',
+        description: 'Simple and modern living in the heart of Mogadishu’s business district. Our Hodan apartment offers nice finishes, air conditioning, and a massive terrace overlooking the city skyline.',
         amenities: ['City View', 'Air Conditioning', 'Elevator', 'Gym Access', 'Underground Parking'],
+        rentCategory: 'Long term',
         host: {
             name: 'Fatima Ahmed',
             avatar: 'https://i.pravatar.cc/150?u=fatima',
@@ -62,6 +64,7 @@ export const listings = [
         tag: 'Historic',
         description: 'Stay in the historic Shangani district in this beautifully restored heritage home. Combining traditional elements with modern comfort, this property offers a unique cultural experience in Mogadishu.',
         amenities: ['Patio', 'Historic Architecture', 'Rooftop Terrace', 'Security Cameras', 'Stable Water'],
+        rentCategory: 'Short term',
         host: {
             name: 'Idiris Nur',
             avatar: 'https://i.pravatar.cc/150?u=idiris',

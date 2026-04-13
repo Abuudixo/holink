@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageCircle, Github, Twitter, Linkedin, CheckCircle2 } from 'lucide-react';
+import React from 'react';
+import { Mail, Phone, MapPin, MessageCircle, Github, Twitter, Linkedin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Contacts = () => {
+    const { t } = useLanguage();
 
     return (
         <div className="bg-white min-h-screen pb-20">
@@ -9,10 +11,10 @@ const Contacts = () => {
             <div className="bg-gray-50/50 pt-32 pb-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6 tracking-tight">
-                        Get in <span className="text-primary italic">Touch</span>
+                        {t('contact_title')}
                     </h1>
                     <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                        Have questions about a property or need help with your rental? Our dedicated team is here to assist you 24/7.
+                        {t('contact_subtitle')}
                     </p>
                 </div>
             </div>
@@ -23,7 +25,7 @@ const Contacts = () => {
                     <div className="lg:col-span-5">
                         <div className="space-y-12">
                             <div>
-                                <h3 className="text-2xl font-display font-bold text-dark mb-8">Contact Information</h3>
+                                <h3 className="text-2xl font-display font-bold text-dark mb-8">{t('contact_info')}</h3>
                                 <div className="space-y-6">
                                     <div className="flex items-start gap-4 group">
                                         <div className="w-12 h-12 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-all">
@@ -49,7 +51,7 @@ const Contacts = () => {
                                         </div>
                                         <div>
                                             <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Visit us</p>
-                                            <p className="text-lg font-bold text-dark">Lama Galaay, Hodan, Mogadishu</p>
+                                            <p className="text-lg font-bold text-dark">{t('rent_location')}, Hodan, {t('rent_location')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +81,7 @@ const Contacts = () => {
                         </p>
                         
                         <a 
-                            href="https://wa.me/15550004695" // Dynamic number placeholder
+                            href="https://wa.me/15550004695" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="w-full py-5 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-2xl font-bold text-xl flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-xl shadow-green-500/20"

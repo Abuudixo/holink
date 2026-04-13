@@ -6,9 +6,11 @@ import {
     ArrowLeft, CheckCircle2
 } from 'lucide-react';
 import { listings } from '../data/listings';
+import { useLanguage } from '../context/LanguageContext';
 
 const ProductDetails = () => {
     const { id } = useParams();
+    const { t } = useLanguage();
     const [listing, setListing] = useState(null);
     const [activeImage, setActiveImage] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
@@ -38,21 +40,21 @@ const ProductDetails = () => {
             {/* Header / Breadcrumb */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div className="flex items-center justify-between">
-                    <Link to="/" className="flex items-center gap-2 text-gray-500 hover:text-dark transition-colors font-medium">
+                    <Link to="/rentals" className="flex items-center gap-2 text-gray-500 hover:text-dark transition-colors font-medium">
                         <ArrowLeft size={18} />
-                        <span>Back to listings</span>
+                        <span>{t('prod_back')}</span>
                     </Link>
                     <div className="flex items-center gap-4">
                         <button className="flex items-center gap-2 text-gray-600 hover:text-dark transition-colors font-medium px-3 py-2 rounded-lg hover:bg-gray-100">
                             <Share2 size={18} />
-                            <span className="hidden sm:inline">Share</span>
+                            <span className="hidden sm:inline">{t('prod_share')}</span>
                         </button>
                         <button 
                             onClick={() => setIsLiked(!isLiked)}
                             className={`flex items-center gap-2 transition-colors font-medium px-3 py-2 rounded-lg hover:bg-gray-100 ${isLiked ? 'text-red-500' : 'text-gray-600 hover:text-dark'}`}
                         >
                             <Heart size={18} className={isLiked ? 'fill-red-500' : ''} />
-                            <span className="hidden sm:inline">{isLiked ? 'Saved' : 'Save'}</span>
+                            <span className="hidden sm:inline">{isLiked ? t('prod_saved') : t('prod_save')}</span>
                         </button>
                     </div>
                 </div>
@@ -130,29 +132,26 @@ const ProductDetails = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="font-display font-bold text-gray-900">Hosted by {listing.host.name}</h3>
+                                    <h3 className="font-display font-bold text-gray-900">{t('prod_hosted')} {listing.host.name}</h3>
                                     <p className="text-sm text-gray-500 font-medium">Professional Host • Superhost</p>
                                 </div>
                             </div>
                             <button className="px-6 py-2.5 border border-gray-200 rounded-xl font-bold text-sm hover:bg-gray-50 transition-colors">
-                                Contact Host
+                                {t('nav_contacts')}
                             </button>
                         </div>
 
                         {/* Description */}
                         <div className="py-8 border-b border-gray-100">
-                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">About this rental</h2>
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">{t('prod_about')}</h2>
                             <p className="text-gray-600 leading-relaxed text-lg italic mb-6">
                                 "{listing.description}"
-                            </p>
-                            <p className="text-gray-600 leading-relaxed">
-                                Our property combines local charm with modern comforts to ensure you have a perfect stay. Whether you're here for adventure or relaxation, you'll find everything you need right at your fingertips.
                             </p>
                         </div>
 
                         {/* Amenities */}
                         <div className="py-8">
-                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">What this place offers</h2>
+                            <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">{t('prod_offers')}</h2>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                                 {listing.amenities.map((amenity, i) => (
                                     <div key={i} className="flex items-center gap-3 text-gray-600 font-medium">
@@ -173,7 +172,7 @@ const ProductDetails = () => {
                                 ))}
                             </div>
                             <button className="mt-8 px-8 py-3.5 border-2 border-dark text-dark rounded-2xl font-bold hover:bg-dark hover:text-white transition-all">
-                                Show all amenities
+                                {t('prod_all_amenities')}
                             </button>
                         </div>
                     </div>
@@ -197,36 +196,36 @@ const ProductDetails = () => {
                                     <div className="flex items-center gap-3 mb-2 pb-2 border-b border-gray-100">
                                         <Calendar size={18} className="text-primary font-bold" />
                                         <div>
-                                            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Duration</p>
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">{t('prod_duration')}</p>
                                             <p className="text-sm font-bold text-dark">Select Dates</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <Users size={18} className="text-primary font-bold" />
                                         <div>
-                                            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Guests</p>
-                                            <p className="text-sm font-bold text-dark">1 Guest</p>
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">{t('prod_guests')}</p>
+                                            <p className="text-sm font-bold text-dark">1 {t('prod_guest')}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <button className="w-full py-4 bg-primary hover:bg-primary-hover text-white rounded-2xl font-bold text-lg transition-all transform active:scale-[0.98] shadow-lg shadow-primary/20 mb-4">
-                                Reserve Now
+                                {t('prod_send_interest')}
                             </button>
-                            <p className="text-center text-gray-400 text-xs font-medium">You won't be charged yet</p>
+                            <p className="text-center text-gray-400 text-xs font-medium">{t('prod_interest_sub')}</p>
 
                             <div className="mt-8 pt-8 border-t border-gray-100 space-y-4">
                                 <div className="flex justify-between text-gray-600 font-medium">
-                                    <span>${listing.price} x 5 nights</span>
+                                    <span>${listing.price} x 5 {t('prod_nights')}</span>
                                     <span>${listing.price * 5}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-600 font-medium">
-                                    <span>Service fee</span>
+                                    <span>{t('prod_service_fee')}</span>
                                     <span>$45</span>
                                 </div>
                                 <div className="flex justify-between text-dark font-bold text-lg pt-4">
-                                    <span>Total</span>
+                                    <span>{t('prod_total')}</span>
                                     <span>${listing.price * 5 + 45}</span>
                                 </div>
                             </div>

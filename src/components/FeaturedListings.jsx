@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Heart, Star, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { listings } from '../data/listings';
+import { useLanguage } from '../context/LanguageContext';
 
 
 const FeaturedListings = () => {
     const [likes, setLikes] = useState({});
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     const toggleLike = (id) => {
         setLikes(prev => ({ ...prev, [id]: !prev[id] }));
@@ -17,11 +19,11 @@ const FeaturedListings = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center mb-10">
                     <div>
-                        <span className="text-primary text-xs font-bold uppercase tracking-wider mb-2 px-3 py-1 bg-red-50 rounded-lg inline-block">Handpicked</span>
-                        <h2 className="text-3xl md:text-3xl font-display font-bold text-gray-900">Featured Listings</h2>
+                        <span className="text-primary text-xs font-bold uppercase tracking-wider mb-2 px-3 py-1 bg-red-50 rounded-lg inline-block">{t('feat_tag')}</span>
+                        <h2 className="text-3xl md:text-3xl font-display font-bold text-gray-900">{t('feat_title')}</h2>
                     </div>
-                    <button className="hidden md:flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                        View all listings
+                    <button onClick={() => navigate('/rentals')} className="hidden md:flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                        {t('feat_view_all')}
                         <ArrowRight size={16} />
                     </button>
                 </div>
@@ -74,8 +76,8 @@ const FeaturedListings = () => {
                     ))}
                 </div>
 
-                <button className="md:hidden w-full mt-8 flex items-center justify-center gap-2 text-primary font-bold text-sm border border-primary/20 p-3 rounded-xl">
-                    View all listings
+                <button onClick={() => navigate('/rentals')} className="md:hidden w-full mt-8 flex items-center justify-center gap-2 text-primary font-bold text-sm border border-primary/20 p-3 rounded-xl">
+                    {t('feat_view_all')}
                     <ArrowRight size={16} />
                 </button>
             </div>
