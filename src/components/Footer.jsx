@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <footer className="bg-white border-t border-gray-100 py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                
+
                 {/* Brand & Logo */}
                 <div className="flex flex-col items-center mb-10">
                     <img src={logo} alt="HoyLink Logo" className="h-20 w-auto object-contain mb-6" />

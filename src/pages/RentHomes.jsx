@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Search, MapPin, Star, Heart, ArrowRight, SlidersHorizontal, ChevronDown } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { listings } from '../data/listings';
+import { useListings } from '../context/ListingsContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const RentHomes = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { t } = useLanguage();
+    const { listings, loading } = useListings();
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState(location.state?.category || 'All');
     const [likes, setLikes] = useState({});
@@ -23,6 +24,15 @@ const RentHomes = () => {
         const matchesCategory = activeCategory === 'All' || item.rentCategory === activeCategory;
         return matchesSearch && matchesCategory;
     });
+
+    if (loading) {
+        return (
+            <div className="min-h-screen pt-32 flex flex-col items-center justify-center gap-4 bg-white">
+                <div className="w-12 h-12 border-4 border-gray-100 border-t-primary rounded-full animate-spin"></div>
+                <p className="text-gray-400 font-display font-bold uppercase tracking-[0.2em] text-[10px]">Loading Properties</p>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-white min-h-screen pb-20">
@@ -67,13 +77,13 @@ const RentHomes = () => {
                             >
                                 {t('rent_all')}
                             </button>
-                            {['Short term', 'Long term', 'Beachfront', 'Comfort', 'Historic'].map((cat) => (
+                            {['Short term', 'Long term'].map((cat) => (
                                 <button 
                                     key={cat} 
                                     onClick={() => setActiveCategory(cat === activeCategory ? 'All' : cat)}
                                     className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${activeCategory === cat ? 'bg-primary text-white shadow-lg shadow-primary/25' : 'bg-white border border-gray-200 text-gray-600 hover:border-primary hover:text-primary'}`}
                                 >
-                                    {cat === 'Short term' ? t('cat_short_title') : cat === 'Long term' ? t('cat_long_title') : cat}
+                                    {cat === 'Short term' ? t('cat_short_title') : t('cat_long_title')}
                                 </button>
                             ))}
                         </div>

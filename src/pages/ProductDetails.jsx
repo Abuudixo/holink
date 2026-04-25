@@ -5,15 +5,26 @@ import {
     Wifi, Coffee, Car, Wind, ShieldCheck, Calendar, Users, 
     ArrowLeft, CheckCircle2
 } from 'lucide-react';
-import { listings } from '../data/listings';
+import { useListings } from '../context/ListingsContext';
 import { useLanguage } from '../context/LanguageContext';
+import { useInterest } from '../context/InterestContext';
 
 const ProductDetails = () => {
     const { id } = useParams();
     const { t } = useLanguage();
+    const { listings } = useListings();
     const [listing, setListing] = useState(null);
     const [activeImage, setActiveImage] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
+    
+    const { addInterest } = useInterest();
+    const [interestSent, setInterestSent] = useState(false);
+
+    const handleInterest = () => {
+        addInterest(listing);
+        setInterestSent(true);
+        setTimeout(() => setInterestSent(false), 3000);
+    };
 
     useEffect(() => {
         const found = listings.find(l => l.id === parseInt(id));
@@ -210,8 +221,16 @@ const ProductDetails = () => {
                                 </div>
                             </div>
 
-                            <button className="w-full py-4 bg-primary hover:bg-primary-hover text-white rounded-2xl font-bold text-lg transition-all transform active:scale-[0.98] shadow-lg shadow-primary/20 mb-4">
-                                {t('prod_send_interest')}
+                            <button 
+                                onClick={handleInterest}
+                                disabled={interestSent}
+                                className={`w-full py-4 rounded-2xl font-bold text-lg transition-all transform active:scale-[0.98] shadow-lg mb-4 ${
+                                    interestSent 
+                                    ? 'bg-emerald-500 text-white shadow-emerald-500/20' 
+                                    : 'bg-primary hover:bg-primary-hover text-white shadow-primary/20'
+                                }`}
+                            >
+                                {interestSent ? 'Interest Sent!' : t('prod_send_interest')}
                             </button>
                             <p className="text-center text-gray-400 text-xs font-medium">{t('prod_interest_sub')}</p>
 

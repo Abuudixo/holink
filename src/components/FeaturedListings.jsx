@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Star, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { listings } from '../data/listings';
+import { useListings } from '../context/ListingsContext';
 import { useLanguage } from '../context/LanguageContext';
 
 
@@ -9,6 +9,9 @@ const FeaturedListings = () => {
     const [likes, setLikes] = useState({});
     const navigate = useNavigate();
     const { t } = useLanguage();
+    const { listings, loading } = useListings();
+
+    if (loading) return null;
 
     const toggleLike = (id) => {
         setLikes(prev => ({ ...prev, [id]: !prev[id] }));

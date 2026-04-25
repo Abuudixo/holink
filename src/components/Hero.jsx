@@ -45,7 +45,7 @@ const Hero = () => {
                         {/* Quick Links */}
                         <div className="flex items-center justify-center gap-6 mt-8">
                             <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('hero_popular')}:</span>
-                            {['Hodan', 'Abdiaziz', 'Beachfront'].map((tag) => (
+                            {['Hodan', 'Abdiaziz', 'Waberi'].map((tag) => (
                                 <button 
                                     key={tag}
                                     onClick={() => navigate('/rentals', { state: { category: tag } })}
