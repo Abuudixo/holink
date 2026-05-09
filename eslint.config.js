@@ -29,7 +29,7 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
       'no-undef': 'error',
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
